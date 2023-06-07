@@ -1,0 +1,44 @@
+<script type="text/javascript">
+
+function logIn() {
+	hideMsgToast();
+	username = document.getElementById("inputUsername").value;
+	password = document.getElementById("inputPassword").value;
+	if ((username == '') || (password == '')) {
+		showMsgToast("danger", "Введите имя пользователя и пароль.");
+	} else {
+		sendRequest({"actionType": "main", "actionName": "login", "username": username, "password": password});	
+	}
+}
+
+</script>
+
+<br/><br/><br/>
+<div class="card mx-auto bg-light" style="width: 30rem;">
+	<h5 class="card-header">Вход</h5>
+	<div class="card-body">
+		<div class="row mb-3">
+			<label for="inputUsername" class="col col-form-label">Имя пользователя</label>
+			<div class="col-7">
+				<input type="text" class="form-control" id="inputUsername" name="username">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="inputPassword" class="col col-form-label">Пароль</label>
+			<div class="col-7">
+				<input type="password" class="form-control" id="inputPassword" name="password">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<input type="hidden" name="actionType" value="auth" />
+			<label for="loginButton" class="col col-form-label"></label>
+			<div class="col-7">
+				<button id="loginButton" class="btn btn-primary text-white col-4" onclick="logIn();return false;">Войти</button>
+			</div>
+		</div>  
+	</div>
+</div>
+
+
+
+

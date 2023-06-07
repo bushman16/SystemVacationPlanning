@@ -1,0 +1,103 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$page_title;?></title>
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+
+<link type="text/css" rel="stylesheet" href="css/font-awesome.css">
+
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="css/sc.correct-bootstrap.css?v=<?=$versionText;?>">
+<link type="text/css" rel="stylesheet" href="css/sc.calendar.css?v=<?=$versionText;?>">
+
+<script type="text/javascript" src="js/sc.main.js?v=<?=$versionText;?>"></script>
+
+
+</head><body>
+
+<nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<?=$wiki_url;?>">
+	<img src="assets/logo_small<?php if ($auth->is_test_server()): ?>_test<?php endif; ?>.svg" height="28" alt="" >
+	</a>
+	<?php if ($session_is_auth): ?>   
+      <ul class="navbar-nav">
+	  		<li class="nav-item">
+			  <a class="nav-link <?php if ($page == 'employee'): ?>active<?php endif; ?>" href="employee">
+			  <span class="fa fa-user-circle"></span>Личный кабинет</a>
+			</li>
+		<?php if (in_array('calendar', $auth->get_session_user_rights())): ?>
+			<li class="nav-item">
+			  <a class="nav-link <?php if ($page == 'calendar'): ?>active<?php endif; ?>" href="calendar">
+			  <span class="fa fa-calendar"></span>Рабочий календарь</a>
+			</li>
+		<?php endif; ?>
+		<?php if (in_array('reservation', $auth->get_session_user_rights())): ?>		
+			<li class="nav-item">
+			  <a class="nav-link <?php if ($page == 'reservation'): ?>active<?php endif; ?>" href="reservation">
+			  <span class="fa fa-desktop"></span>Бронирование</a>
+			</li>
+		<?php endif; ?>	
+		<?php if (in_array('library', $auth->get_session_user_rights())): ?>	
+			<li class="nav-item">
+			  <a class="nav-link <?php if ($page == 'library'): ?>active<?php endif; ?>" href="library">
+			  <span class="fa fa-graduation-cap"></span>Библиотека</a>
+			</li>
+		<?php endif; ?>		
+		<?php if (in_array('admin', $auth->get_session_user_rights())): ?>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" id="navbarAdmin" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false" href=""><span class="fa fa-gears"></span>Администрирование</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarAdmin">
+					<li><a class="dropdown-item <?php if ($page == 'admin_sync'): ?>active<?php endif; ?>" href="admin_sync">
+						<span class="fa fa-cloud"></span>Синхронизация пользователей</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_backup'): ?>active<?php endif; ?>" href="admin_backup">
+						<span class="fa fa-archive"></span>Резервное копирование</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_user'): ?>active<?php endif; ?>" href="admin_user">
+						<span class="fa fa-users"></span>Пользователи</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_organization'): ?>active<?php endif; ?>" href="admin_organization">
+						<span class="fa fa-sitemap"></span>Организации</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_job'): ?>active<?php endif; ?>" href="admin_job">
+						<span class="fa fa-briefcase"></span>Должности</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_city'): ?>active<?php endif; ?>" href="admin_city">
+						<span class="fa fa-map-marker"></span>Города</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_role'): ?>active<?php endif; ?>" href="admin_role">
+						<span class="fa fa-puzzle-piece"></span>Роли в проектах</a></li>
+					<li><a class="dropdown-item <?php if ($page == 'admin_calendar'): ?>active<?php endif; ?>" href="admin_calendar">
+						<span class="fa fa-calendar-check-o"></span>Календарь</a></li>
+				</ul>
+			</li>
+		<?php endif; ?>
+		
+		<?php if (in_array('internalAdmin', $auth->get_session_user_rights())): ?>		
+			<li class="nav-item">
+			  <a class="nav-link <?php if ($page == 'admin_internal'): ?>active<?php endif; ?>" href="admin_internal">
+			  <span class="fa fa-cloud"></span>Internal</a>
+			</li>
+		<?php endif; ?>	
+		
+		</ul>
+		<ul class="navbar-nav ms-auto">
+		<?php if ($session_is_auth): ?>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" id="navbarUser" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false" href="">
+				<?=$user_name;?></a>
+				<ul class="dropdown-menu" aria-labelledby="navbarUser">
+					<li><a class="dropdown-item" href="" onclick="logOut();return false;">
+					<span class="fa fa-share-square-o"></span>Выйти</a></li>
+				</ul>
+			</li>
+		<?php endif; ?>
+		<li class="nav-item">
+			<a class="nav-link calendarGrey <?php if ($page == 'about'): ?>active<?php endif; ?>" href="about">&nbsp;
+			<span class="sc-small-font">v <?=$versionText;?></span></a>
+		</li>
+      </ul>	
+	<?php endif; ?>	  
+  </div>
+</nav>
+
+<div id="div_msg"></div>

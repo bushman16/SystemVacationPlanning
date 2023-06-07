@@ -1,0 +1,19 @@
+<script type="text/javascript" src="js/sc.internal.js?v=<?=$versionText;?>"></script>
+<div id="mainBodyBox">
+	<div id="chooseFileDiv" class="calendarBoxOuter p-3">	
+			<table>
+			<tr><td class="calendarGrey p-3">Файл справочника телефонов/e-mail</td>
+			<td><input class="form-control" type="file" id="fileDict" accept=".csv"></td></tr>
+			<tr><td class="calendarGrey p-3">Файл списка сотрудников</td>
+			<td><input class="form-control" type="file" id="fileEmpl" accept=".csv"></td></tr>
+			<tr><td></td><td><button id="loadBtn" class="btn btn-primary" onclick="loadAll();">
+			<span class="fa fa-arrow-circle-down"></span>Актуализировать сотрудников</button></td></tr>
+			</table>
+	</div>
+	<div id="dictionariesDiv" class="hidden"></div>
+	<div id="employeesDiv" class="hidden"></div>	
+</div>
+ 
+
+
+
